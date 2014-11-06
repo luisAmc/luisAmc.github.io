@@ -1,3 +1,10 @@
 body {
-	background-image: url(/images/background.png);
+	background: #a7cfdf; /* Old browsers */
+	background: -moz-linear-gradient(top,  #a7cfdf 0%, #23538a 64%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a7cfdf), color-stop(64%,#23538a)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #a7cfdf 0%,#23538a 64%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #a7cfdf 0%,#23538a 64%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #a7cfdf 0%,#23538a 64%); /* IE10+ */
+	background: linear-gradient(to bottom,  #a7cfdf 0%,#23538a 64%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a7cfdf', endColorstr='#23538a',GradientType=0 ); /* IE6-9 */
 }
