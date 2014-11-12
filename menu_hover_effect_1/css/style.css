@@ -1,0 +1,75 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	font-family: verdana;
+}
+
+header {
+	margin: 100px auto;
+	width: 1200px;
+	height: 230px;
+}
+
+.contenedor {
+	width: 200px;
+	height: 230px;
+	float: left;
+	-webkit-transition: height .4s;
+}
+
+#uno {
+	background-color: rgb(208, 101, 3);
+}
+
+#dos {
+	background-color: rgb(233, 147, 26);
+}
+
+#tres {
+	background-color: rgb(22, 145, 190);
+}
+
+#cuatro {
+	background-color: rgb(22, 107, 162);
+}
+
+#cinco {
+	background-color: rgb(27, 54, 71);
+}
+
+#seis {
+	background-color: rgb(21, 40, 54);
+}
+
+.icon {
+	display: block;
+	margin: 50px auto;
+	background-color: rgba(255, 255, 255, .15);
+	width: 40px;
+	padding: 20px;
+	-webkit-border-radius: 50px;
+	-webkit-box-shadow: 0px 0px 0px 30px rgba(255, 255, 255, 0);
+	-webkit-transition: box-shadow .4s;
+}
+
+.text {
+	font-size: 1.2em;
+	color: white;
+	text-align: center;
+	padding-top: 10px;
+	opacity: .6;
+	-webkit-transition: padding-top .4s;
+}
+
+.contenedor:hover {
+	height: 250px;
+}
+
+.contenedor:hover .text {
+	padding-top: 30px;
+	opacity: 1;
+}
+
+.contenedor:hover .icon {
+	-webkit-box-shadow: 0px 0px 0px 0px rgba(255, 255, 255, .6);
+}
