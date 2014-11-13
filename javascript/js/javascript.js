@@ -10,6 +10,8 @@ function validateUserEnter() {
 					document.getElementById("p1").style.backgroundColor = "#FF4D4D";
 					document.getElementById("p2").style.backgroundColor = "#FF4D4D";
 					return false;
+				} else {
+					location.href = "./validacion_correcta.html";
 				}
 			} else {
 				alert("El texto ingresado en \"Contraseña\" y \"Reingrese contraseña\" debe coincidir. Verifique los campos.");

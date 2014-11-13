@@ -1,0 +1,7 @@
+#llamaAnimation img {
+	display: none;
+}
+
+#llamaAnimation img:first-child {
+	display: block;
+}
