@@ -1,4 +1,4 @@
-onload = function startAnimation() {
+function startAnimation() {
 	var frames = document.getElementById("llamaAnimation").children;
 	var frameCount = frames.length;
 	var index = 0;

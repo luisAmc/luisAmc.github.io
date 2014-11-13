@@ -1,7 +1,20 @@
+#llamaAnimation {
+	height: 130px;
+}
+
 #llamaAnimation img {
 	display: none;
 }
 
 #llamaAnimation img:first-child {
 	display: block;
+}
+
+#kawaiiPotato {
+	width: 100px;
+	height: 100px;
+}
+
+h2, p {
+	font-family: Verdana, 'Lucida Sans Unicode' ;
 }
