@@ -1,0 +1,51 @@
+canvas {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: transparent;
+}
+
+#background {
+    z-index: -2;
+}
+
+#main {
+    z-index: -1;
+}
+
+#ship {
+    z-index: 0;
+}
+
+.score {
+    position: absolute;
+    top: 5px;
+    left: 1100px;
+    color: #FFFF00;
+    font-family: Verdana, "Lucida Sans Serif";
+    font-size: 20px;
+    cursor: default;
+}
+
+.game-over {
+    position: absolute;
+    top: 200px;
+    left: 490px;
+    color: #FFFF00;
+    font-family: Verdana, sans-serif;
+    font-style: oblique;
+    font-size: 50px;
+    cursor: default;
+    display: none;
+}
+
+.game-over span {
+    font-size: 40px;
+    cursor: pointer;
+    position: relative;
+    left: 70px;
+}
+
+.game-over span:hover {
+    color: #FFD700;
+}
