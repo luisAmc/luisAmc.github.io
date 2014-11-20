@@ -14,8 +14,10 @@
         <canvas id="ship" width="1200" height="720">
             <!--Canvas para la nave-->
         </canvas>
-        <div class="score">Score: <span id="score"></span></div>
-        <div class="game-over" id="game-over">GAME OVER<p><span onclick="game.restart()">Restart</span></p></div>
+        <div class="startMenu" id="startMenu"><p>SPACE INVADERS <br> <span id="kindaText">...kinda</span></p><p><span onclick="game.startGame()">Empezar juego</span></p></div>
+        <div class="score">Puntaje: <span id="score"></span></div>
+        <div class="lifebar">Vida:</div>
+        <div class="game-over" id="game-over">GAME OVER<p><span onclick="game.restart()">Reiniciar</span></p></div>
         <script src="js/game.js"></script>
     </body>
 </html>

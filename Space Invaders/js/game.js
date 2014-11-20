@@ -17,7 +17,8 @@ var imageRepository = new function() {
     this.alienBullet = new Image();
     this.boss = new Image();
     this.bossBullet = new Image();
-    console.log("new Image()");
+    //this.lifebar = new Image();
+    
     var numImages = 7;
     var numLoaded = 0;
     function imageLoaded() {
@@ -29,41 +30,38 @@ var imageRepository = new function() {
         }
     }
     this.background.onload = function() {
-        console.log("image loaded 1");
         imageLoaded();
     }
     this.ship.onload = function() {
-        console.log("image loaded 2");
         imageLoaded();
     }
     this.bullet.onload = function() {
-        console.log("image loaded 3");
         imageLoaded();
     }
     this.alien.onload = function() {
-        console.log("image loaded 4");
         imageLoaded();
     }
     this.alienBullet.onload = function() {
-        console.log("image loaded 5");
         imageLoaded();
     }
     this.boss.onload = function() {
-        console.log("image loaded 6");
         imageLoaded();
     }
     this.bossBullet.onload = function() {
-        console.log("image loaded 7");
         imageLoaded();
     }
+    //this.lifebar.onload = function() {
+    //    imageLoaded();
+    //}
     
     this.background.src = "images/background.png";
     this.ship.src = "images/ship2.png";
     this.bullet.src = "images/bullets/bullet.png";
-    this.alien.src = "images/aliens/alien.png";
+    this.alien.src = "images/aliens/alien2.png";
     this.alienBullet.src = "images/bullets/bullet_alien.png  ";
     this.boss.src = "images/aliens/boss.png";
     this.bossBullet.src = "images/bullets/bullet_boss.png";
+    //this.lifebar.src = "images/lifebar/lifebar00.png";
 }
 
 /* 
@@ -218,7 +216,7 @@ function Pool(maxSize) {
 //Ship class
 function Ship() {
     this.alive = false;
-    this.speed = 4 ;
+    this.speed = 5;
     this.bulletPool = new Pool(30);
     this.bulletPool.init("bullet");
     var fireRate = 15; //Cada 15 frames dispara
@@ -255,26 +253,25 @@ function Ship() {
             
             if (!this.isColliding)
                 this.draw();
-            else {
+            else 
                 this.alive = false;
-                game.gameOver();
-            }
+            
         }
-        if (KEY_STATUS.space && counter >= fireRate && !this.isColliding) {
+        if ((KEY_STATUS.space) && (counter >= fireRate) && (!this.isColliding)) {
             this.fire();
             counter = 0;
         }
     };
     
     this.fire = function() {
-        this.bulletPool.getTwo(this.x + 7, this.y, 3, this.x + 63, this.y, 3);
+        this.bulletPool.getTwo(this.x + 7, this.y, 4, this.x + 63, this.y, 4);
     };
 }
 Ship.prototype = new Drawable();
 
 //Alien class
 function Alien() {
-    var percentFire = .01;
+    var percentFire = .008;
     var chance = 0;
     this.alive = false;
     this.collidableWith = "bullet";
@@ -283,16 +280,18 @@ function Alien() {
     this.spawn = function(x, y, speed) {
         this.x = x;
         this.y = y;
-        this.speed = speed;
+        this.speed = speed * 1.5;
         this.speedX = speed / 1.5;
         this.speedY = speed / 3;
         this.alive = true;
         this.leftEdge = this.x - 90;
         this.rightEdge = this.x + 410;
-        this.bottomEdge = game.mainCanvas - imageRepository.alien.height;
+        this.bottomEdge = game.mainCanvas.height;
     };
     
     this.draw = function() {
+        console.log("this.y ", this.y);
+        console.log("this.bottomEdge ", this.bottomEdge);
         this.context.clearRect(this.x - 1, this.y, this.width + 2, this.height);
         this.x += this.speedX;
         this.y += this.speedY;
@@ -300,7 +299,7 @@ function Alien() {
             this.speedX = this.speed;
         else if (this.x >= this.rightEdge + this.width)
             this.speedX = -this.speed;
-        else if (this.y + imageRepository.alien.height >= this.bottomEdge) {
+        else if (this.y >= this.bottomEdge - this.height) {
             game.gameOver();
         }
         
@@ -445,7 +444,7 @@ function Game() {
                  
             this.alienBulletPool = new Pool(50);
             this.alienBulletPool.init("alienBullet");
-            this.quadTree = new QuadTree({
+            this.spacialPartition = new SpacialPartition({
                 x: 0,
                 y: 0,
                 width: this.mainCanvas.width, 
@@ -483,7 +482,7 @@ function Game() {
         var x = 100;
         var y = -height;
         var spacer = y * 1.5;
-        for (var index = 1; index <= 18; index++) {
+        for (var index = 1; index <= 24; index++) {
             this.alienPool.get(x, y, 2);
             x += width + 25;
             if (index % 6 == 0) {
@@ -499,20 +498,34 @@ function Game() {
         animate();
     };
     
+    this.startGame = function() {
+        document.getElementById("startMenu").style.display = "none";
+        this.backgroundContext.clearRect(0, 0, this.backgroundCanvas.width, this.backgroundCanvas.height);
+        this.shipContext.clearRect(0, 0, this.shipCanvas.width, this.shipCanvas.height);
+        this.mainContext.clearRect(0, 0, this.mainCanvas.width, this.mainCanvas.height);
+        this.spacialPartition.clear();
+        this.background.init(0, 0);
+        this.ship.init(this.shipStartX, this.shipStartY, imageRepository.ship.width, imageRepository.ship.height);
+        this.alienPool.init("alien");
+        this.spawnAliens();
+        this.alienBulletPool.init("alienBullet");
+        this.score = 0;
+        
+        this.start();
+    }
+    
     this.gameOver = function() {
         document.getElementById("game-over").style.display = "block";
     };
     
     this.restart = function() {
         document.getElementById("game-over").style.display = "none";
-        this.backgroundContext.clearRect(0, 0, this.backgroundCanvas.width,
-                                         this.backgroundCanvas.height);
+        this.backgroundContext.clearRect(0, 0, this.backgroundCanvas.width, this.backgroundCanvas.height);
         this.shipContext.clearRect(0, 0, this.shipCanvas.width, this.shipCanvas.height);
         this.mainContext.clearRect(0, 0, this.mainCanvas.width, this.mainCanvas.height);
-        this.quadTree.clear();
+        this.spacialPartition.clear();
         this.background.init(0, 0);
-        this.ship.init(this.shipStartX, this.shipStartY, imageRepository.ship.width,
-                       imageRepository.ship.height);
+        this.ship.init(this.shipStartX, this.shipStartY, imageRepository.ship.width, imageRepository.ship.height);
         this.alienPool.init("alien");
         this.spawnAliens();
         this.alienBulletPool.init("alienBullet");
@@ -526,12 +539,12 @@ function Game() {
 function animate() {
     document.getElementById("score").innerHTML = game.score;
     
-    game.quadTree.clear();
-    game.quadTree.insert(game.ship);
-    game.quadTree.insert(game.ship.bulletPool.getPool());
-    game.quadTree.insert(game.alienPool.getPool());
-    game.quadTree.insert(game.alienBulletPool.getPool());
-    game.quadTree.insert(game.boss);
+    game.spacialPartition.clear();
+    game.spacialPartition.insert(game.ship);
+    game.spacialPartition.insert(game.ship.bulletPool.getPool());
+    game.spacialPartition.insert(game.alienPool.getPool());
+    game.spacialPartition.insert(game.alienBulletPool.getPool());
+    game.spacialPartition.insert(game.boss);
     detectCollision();
     
     if (game.score == 54) {
@@ -545,6 +558,8 @@ function animate() {
     
     if (game.ship.alive)
         requestAnimFrame(animate);
+    else
+        game.gameOver();
     
     game.background.draw();
     game.ship.move();
@@ -553,11 +568,12 @@ function animate() {
     game.alienBulletPool.animate();
 }
 
+//detectCollision method
 function detectCollision() {
     var objects = [];
-    game.quadTree.getAllObjects(objects);
+    game.spacialPartition.getAllObjects(objects);
     for (var x = 0, len = objects.length; x < len; x++) {
-        game.quadTree.findObjects(obj = [], objects[x]);
+        game.spacialPartition.findObjects(obj = [], objects[x]);
         for (y = 0, length = obj.length; y < length; y++) {
             if (objects[x].collidableWith === obj[y].type &&
                 (objects[x].x < obj[y].x + obj[y].width &&
@@ -571,8 +587,8 @@ function detectCollision() {
     }
 };
 
-//QuadTree class
-function QuadTree(container, levelX) {
+//QuadTree - spacial partition
+function SpacialPartition(container, levelX) {
     var maxObjectsPerCuadrant = 10;
     this.bounds = container;
     var objects = [];
@@ -658,25 +674,25 @@ function QuadTree(container, levelX) {
         var subWidth = (this.bounds.width / 2);
         var subHeight = (this.bounds.height / 2);
 
-        this.nodes[0] = new QuadTree({
+        this.nodes[0] = new SpacialPartition({
             x: this.bounds.x + subWidth,
             y: this.bounds.y,
             width: subWidth,
             height: subHeight
         }, level + 1);
-        this.nodes[1] = new QuadTree({
+        this.nodes[1] = new SpacialPartition({
             x: this.bounds.x,
             y: this.bounds.y,
             width: subWidth,
             height: subHeight
         }, level + 1);
-        this.nodes[2] = new QuadTree({
+        this.nodes[2] = new SpacialPartition({
             x: this.bounds.x,
             y: this.bounds.y + subHeight,
             width: subWidth,
             height: subHeight
         }, level + 1);
-        this.nodes[3] = new QuadTree({
+        this.nodes[3] = new SpacialPartition({
             x: this.bounds.x + subWidth,
             y: this.bounds.y + subHeight,
             width: subWidth,

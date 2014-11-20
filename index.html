@@ -3,18 +3,113 @@
 <head>
 	<meta charset="utf-8">
 	<title>Indice - Programación IV</title>
-	<link rel="stylesheet" type="text/css" href="./style.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="css/component.css" />
+    <script src="js/snap.svg-min.js"></script>
 </head>
 <body>
-	<div id="index">
-		<p>Trabajos - Programación IV</p>
-		<ul id="tareas">
-			<li><a href="./curriculum/index.html">Curriculum</a></li>
-			<li><a href="./historia/index.html">Historia</a></li>
-			<li><a href="./javascript/index.html">Javascript</a></li>
-			<li><a href="./menu_hover_effect_1/index.html">Menú con hover effect #1</a></li>
-			<li><a href="./responsive_website_1/index.html">Responsive Website #1</a></li>
-		</ul>
-	</div>
+    <div class="container">
+        <div id="index">
+            <header class="mainHeader">
+                <h1>
+                    Programación IV
+                    <span>Tareas y trabajos de la clase.</span>
+                </h1>
+            </header>
+        </div>
+        <section id="grid" class="grid clearfix">
+            <a href="curriculum/index.html" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
+                <figure>
+                    <img src="img/1.png" />
+                    <svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z"/></svg>
+                    <figcaption>
+                        <h2>Curriculum</h2>
+                        <p>Mi curriculum vitae :)</p>
+                    </figcaption>
+                </figure>
+            </a>
+            <a href="historia/index.html" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
+                <figure>
+                    <img src="img/2.png" />
+                    <svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z"/></svg>
+                    <figcaption>
+                        <h2>Historia CSS</h2>
+                        <p>Historia ficticia utilizando un solo css. El fantasma en el túnel.</p>
+                    </figcaption>
+                </figure>
+            </a>
+            <a href="javascript/index.html" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
+                <figure>
+                    <img src="img/3.png" />
+                    <svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z"/></svg>
+                    <figcaption>
+                        <h2>Validación Javascript</h2>
+                        <p>Valida que dos contraseñas sean iguales, luego muestra una llama verde alienígena.</p>
+                    </figcaption>
+                </figure>
+            </a>
+            <a href="menu_hover_effect_1/index.html" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
+                <figure>
+                    <img src="img/4.png" />
+                    <svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z"/></svg>
+                    <figcaption>
+                        <h2>Hover Effect CSS</h2>
+                        <p>Prueba de un efecto hover (pinta) sobre un menú estático.</p>
+                    </figcaption>
+                </figure>
+            </a>
+            <a href="responsive_website_1/index.html" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
+                <figure>
+                    <img src="img/5.png" />
+                    <svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z"/></svg>
+                    <figcaption>
+                        <h2>Responsive Website #1</h2>
+                        <p>Primer prueba de un responsive website utilizando solo css.</p>
+                    </figcaption>
+                </figure>
+            </a>
+            <a href="Space%2520Invaders/index.html" data-path-hover="m 0,0 0,47.7775 c 24.580441,3.12569 55.897012,-8.199417 90,-8.199417 34.10299,0 65.41956,11.325107 90,8.199417 L 180,0 z">
+                <figure>
+                    <img src="img/6.png" />
+                    <svg viewBox="0 0 180 320" preserveAspectRatio="none"><path d="m 0,0 0,171.14385 c 24.580441,15.47138 55.897012,24.75772 90,24.75772 34.10299,0 65.41956,-9.28634 90,-24.75772 L 180,0 0,0 z"/></svg>
+                    <figcaption>
+                        <h2>Space Invaders... kinda</h2>
+                        <p>Simulación del juego clásico Space Invaders.</p>
+                    </figcaption>
+                </figure>
+            </a>
+        </section>
+    </div><!-- /container -->
+    <script>
+        (function() {
+
+            function init() {
+                var speed = 330,
+                    easing = mina.backout;
+
+                [].slice.call ( document.querySelectorAll( '#grid > a' ) ).forEach( function( el ) {
+                    var s = Snap( el.querySelector( 'svg' ) ), path = s.select( 'path' ),
+                        pathConfig = {
+                            from : path.attr( 'd' ),
+                            to : el.getAttribute( 'data-path-hover' )
+                        };
+
+                    el.addEventListener( 'mouseenter', function() {
+                        path.animate( { 'path' : pathConfig.to }, speed, easing );
+                    } );
+
+                    el.addEventListener( 'mouseleave', function() {
+                        path.animate( { 'path' : pathConfig.from }, speed, easing );
+                    } );
+                } );
+            }
+
+            init();
+
+        })();
+    </script>
+    <!-- For the demo ad only -->   
 </body>
 </html>
