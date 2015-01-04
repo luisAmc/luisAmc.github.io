@@ -271,7 +271,7 @@ Ship.prototype = new Drawable();
 
 //Alien class
 function Alien() {
-    var percentFire = .008;
+    var percentFire = 0.01;
     var chance = 0;
     this.alive = false;
     this.collidableWith = "bullet";
@@ -737,6 +737,6 @@ window.requestAnimFrame = (function() {
         window.oRequestAnimationFrame ||
         window.msRequestAnimationFrame ||
         function (callback) {
-            window.setTimeout(callback, 1000);
+            window.setTimeout(callback, 16);
         };
 })();
