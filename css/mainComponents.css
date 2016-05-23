@@ -1,0 +1,12 @@
+body { 
+  	font: 14px helvetica neue, helvetica, arial, sans-serif;
+}
+
+#canvas {
+	border: 1px solid #000000;
+/*	width: 70%;
+	height: 70%;
+	position: absolute;
+	left: 0;
+*/	top: 0;
+}
